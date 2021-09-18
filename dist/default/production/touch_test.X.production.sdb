@@ -13,15 +13,15 @@
 [v ___eecpymem __eecpymem `(v  1 e 1 0 ]
 "39
 [v ___memcpyee __memcpyee `(v  1 e 1 0 ]
-"76 C:\Users\user\MPLABXProjects\touch_test.X\main.c
+"78 C:\Users\user\MPLABXProjects\touch_test.X\main.c
 [v _delay_ms delay_ms `(v  1 e 1 0 ]
-"89
+"91
 [v _TMR0_Interrupt TMR0_Interrupt `(v  1 e 1 0 ]
-"101
+"103
 [v _Get_Value Get_Value `(ui  1 e 2 0 ]
-"121
-[v _Touch_SW Touch_SW `(a  1 e 1 0 ]
-"146
+"123
+[v _Touch_SW Touch_SW `(v  1 e 1 0 ]
+"151
 [v _main main `(v  1 e 1 0 ]
 "52 C:\Users\user\MPLABXProjects\touch_test.X\mcc_generated_files/interrupt_manager.c
 [v _INTERRUPT_InterruptManager INTERRUPT_InterruptManager `II(v  1 e 1 0 ]
@@ -43,7 +43,7 @@
 [v _TMR0_SetInterruptHandler TMR0_SetInterruptHandler `(v  1 e 1 0 ]
 "137
 [v _TMR0_DefaultInterruptHandler TMR0_DefaultInterruptHandler `(v  1 e 1 0 ]
-[s S134 . 1 `uc 1 IOCIF 1 0 :1:0 
+[s S135 . 1 `uc 1 IOCIF 1 0 :1:0 
 `uc 1 INTF 1 0 :1:1 
 `uc 1 TMR0IF 1 0 :1:2 
 `uc 1 IOCIE 1 0 :1:3 
@@ -53,13 +53,13 @@
 `uc 1 GIE 1 0 :1:7 
 ]
 "374 C:/Program Files (x86)/Microchip/MPLABX/v5.40/packs/Microchip/PIC12-16F1xxx_DFP/1.2.63/xc8\pic\include\proc\pic16f1827.h
-[s S143 . 1 `uc 1 . 1 0 :2:0 
+[s S144 . 1 `uc 1 . 1 0 :2:0 
 `uc 1 T0IF 1 0 :1:2 
 `uc 1 . 1 0 :2:3 
 `uc 1 T0IE 1 0 :1:5 
 ]
-[u S148 . 1 `S134 1 . 1 0 `S143 1 . 1 0 ]
-[v _INTCONbits INTCONbits `VES148  1 e 1 @11 ]
+[u S149 . 1 `S135 1 . 1 0 `S144 1 . 1 0 ]
+[v _INTCONbits INTCONbits `VES149  1 e 1 @11 ]
 "732
 [v _TMR0 TMR0 `VEuc  1 e 1 @21 ]
 "752
@@ -129,16 +129,18 @@
 [v _delayCount delayCount `ui  1 s 2 delayCount ]
 "58
 [v _Norm Norm `ui  1 s 2 Norm ]
+"59
+[v _touchSwStatus touchSwStatus `a  1 s 1 touchSwStatus ]
 "58 C:\Users\user\MPLABXProjects\touch_test.X\mcc_generated_files/tmr0.c
 [v _timer0ReloadVal timer0ReloadVal `VEuc  1 e 1 0 ]
 "59
 [v _TMR0_InterruptHandler TMR0_InterruptHandler `*.37(v  1 e 2 0 ]
-"146 C:\Users\user\MPLABXProjects\touch_test.X\main.c
+"151 C:\Users\user\MPLABXProjects\touch_test.X\main.c
 [v _main main `(v  1 e 1 0 ]
 {
-"148
+"153
 [v main@i i `i  1 a 2 0 ]
-"189
+"196
 } 0
 "5 C:\Program Files\Microchip\xc8\v2.20\pic\sources\c99\common\lwdiv.c
 [v ___lwdiv __lwdiv `(ui  1 e 2 0 ]
@@ -152,24 +154,24 @@
 [v ___lwdiv@dividend dividend `ui  1 p 2 6 ]
 "30
 } 0
-"121 C:\Users\user\MPLABXProjects\touch_test.X\main.c
-[v _Touch_SW Touch_SW `(a  1 e 1 0 ]
+"123 C:\Users\user\MPLABXProjects\touch_test.X\main.c
+[v _Touch_SW Touch_SW `(v  1 e 1 0 ]
 {
-"123
+"125
 [v Touch_SW@CapRead CapRead `ui  1 a 2 8 ]
 [v Touch_SW@i i `ui  1 a 2 6 ]
-"137
+"142
 } 0
-"101
+"103
 [v _Get_Value Get_Value `(ui  1 e 2 0 ]
 {
-"112
+"114
 } 0
-"76
+"78
 [v _delay_ms delay_ms `(v  1 e 1 0 ]
 {
 [v delay_ms@cnt cnt `ui  1 p 2 0 ]
-"81
+"83
 } 0
 "50 C:\Users\user\MPLABXProjects\touch_test.X\mcc_generated_files/mcc.c
 [v _SYSTEM_Initialize SYSTEM_Initialize `(v  1 e 1 0 ]
@@ -222,8 +224,8 @@
 {
 "140
 } 0
-"89 C:\Users\user\MPLABXProjects\touch_test.X\main.c
+"91 C:\Users\user\MPLABXProjects\touch_test.X\main.c
 [v _TMR0_Interrupt TMR0_Interrupt `(v  1 e 1 0 ]
 {
-"93
+"95
 } 0

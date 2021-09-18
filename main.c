@@ -56,15 +56,17 @@
 /** 変数 **/
 static unsigned int delayCount; //遅延量カウンタ　msec指定
 static unsigned int Norm; //タッチSW　OFF時の値格納変数
+static bool touchSwStatus = false;  //タッチSWの状態フラグ
 
 /** 定数 **/
 #define TRIP    550     //ONOFF判定スレッショルド値　520～1000　小さいほど感度高い
+#define HYST    64      //OFF時のヒステリシス値
 
 /** 関数プロトタイプ **/
 void delay_ms(unsigned int);
 void TMR0_Interrupt(void);
 unsigned int Get_Value(void);
-bool Touch_SW(void);
+void Touch_SW(void);
 
 /**  関数　**/
 
@@ -113,12 +115,12 @@ unsigned int Get_Value(void)
 
 /*******************************************************************************
  *  タッチSWのON　OFF判定関数
- *  第1引数；　なし
- *  OFFの場合、Norm変数との平均値を取り、Normを補正する
- *  戻り値は、ON:true、OFF:false
+ *  第1引数: なし
+ *  フラグにてON OFFを指示、OFFの場合、Norm変数との平均値を取り、Normを補正する
+ *  戻り値: 無し
  *
  ******************************************************************************/
-bool Touch_SW(void)
+void Touch_SW(void)
 {
     unsigned int i, CapRead;
     CapRead = 0;
@@ -129,10 +131,13 @@ bool Touch_SW(void)
 
     /* タッチSWのON　OFF判定 */
     if (CapRead < (Norm - TRIP)) {//TRIPは初期定数として設定している
-        return (true); //SW ON判定
-    } else {
+        //SW ON判定
+        touchSwStatus = true;
+    } else if (CapRead > (Norm - TRIP + HYST)){
+        //SW OFF判定
+        touchSwStatus = false;
         Norm = (Norm + CapRead) / 2; //OFF時の値とNormとの平均値で補正
-        return (false); //SW OFF判定
+       
     }
 }
 
@@ -179,7 +184,9 @@ void main(void)
     /* 通常のタッチSW検出 */
     while (1) {
         // 検知開始
-        if (Touch_SW() == true) {//ONなら
+        Touch_SW();
+        
+        if (touchSwStatus == true) {//ONなら
             LATB0 = 1; //LED点灯
         } else {
             LATB0 = 0; //LED消灯

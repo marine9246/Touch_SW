@@ -4408,6 +4408,8 @@ void WDT_Initialize(void);
 
 static unsigned int delayCount;
 static unsigned int Norm;
+static _Bool touchSwStatus = 0;
+
 
 
 
@@ -4416,8 +4418,8 @@ static unsigned int Norm;
 void delay_ms(unsigned int);
 void TMR0_Interrupt(void);
 unsigned int Get_Value(void);
-_Bool Touch_SW(void);
-# 76 "main.c"
+void Touch_SW(void);
+# 78 "main.c"
 void delay_ms(unsigned int cnt)
 {
     delayCount = cnt;
@@ -4455,8 +4457,8 @@ unsigned int Get_Value(void)
     CPSON = 0;
     return (TMR1);
 }
-# 121 "main.c"
-_Bool Touch_SW(void)
+# 123 "main.c"
+void Touch_SW(void)
 {
     unsigned int i, CapRead;
     CapRead = 0;
@@ -4467,13 +4469,16 @@ _Bool Touch_SW(void)
 
 
     if (CapRead < (Norm - 550)) {
-        return (1);
-    } else {
+
+        touchSwStatus = 1;
+    } else if (CapRead > (Norm - 550 + 64)){
+
+        touchSwStatus = 0;
         Norm = (Norm + CapRead) / 2;
-        return (0);
+
     }
 }
-# 146 "main.c"
+# 151 "main.c"
 void main(void)
 {
     int i;
@@ -4510,7 +4515,9 @@ void main(void)
 
     while (1) {
 
-        if (Touch_SW() == 1) {
+        Touch_SW();
+
+        if (touchSwStatus == 1) {
             LATB0 = 1;
         } else {
             LATB0 = 0;
